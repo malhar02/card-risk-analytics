@@ -9,6 +9,8 @@ This is an independent public-data project. It does not use American Express int
 
 ## Interactive website dashboard
 
+**Live site:** [Open the dashboard](https://malhar02.github.io/card-risk-analytics/) — hosted on GitHub Pages.
+
 The static dashboard in the site/ folder includes an executive overview, a fraud validation-threshold explorer, a credit risk-decile and repayment-status explorer, and a methodology page. Charts, filters, table sorting, search, and aggregate CSV/JSON exports run in the browser without a backend service.
 
 The website loads only the compact aggregate snapshot in site/data/dashboard.json. It does not include the raw transaction file or account-level credit records. Rebuild that snapshot from the six prepared aggregate CSVs with:
