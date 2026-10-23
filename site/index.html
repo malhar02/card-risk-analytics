@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1626">
-  <meta name="description" content="Interactive portfolio dashboard exploring fraud triage and credit-default review analytics with PySpark.">
-  <title>Card Risk Intelligence | Portfolio Analytics</title>
+  <meta name="theme-color" content="#f4f2ec">
+  <meta name="description" content="A portfolio study of payment fraud and credit default risk, with transparent evaluation and interactive review analysis.">
+  <title>Fraud & Credit Risk | Portfolio Study</title>
   <link rel="stylesheet" href="./styles.css">
   <script defer src="./app.js"></script>
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" aria-label="Main navigation">
-      <a class="brand" href="#overview" aria-label="Card Risk Intelligence overview">
+      <a class="brand" href="#overview" aria-label="Fraud and credit risk portfolio study overview">
         <span class="brand-mark">CR</span>
-        <span class="brand-copy"><strong>RISK / INTELLIGENCE</strong><small>PORTFOLIO LAB</small></span>
+        <span class="brand-copy"><strong>CARD RISK / STUDY</strong><small>FRAUD & CREDIT</small></span>
       </a>
       <div class="side-caption">WORKSPACE</div>
       <nav class="nav-list">
@@ -25,19 +25,19 @@
       </nav>
       <div class="sidebar-spacer"></div>
       <div class="snapshot-card"><span class="live-dot"></span><div><strong>LOCAL SNAPSHOT</strong><small>Benchmark data · offline</small></div></div>
-      <div class="sidebar-footer"><span class="avatar">RA</span><div><strong>Risk analytics</strong><small>Independent portfolio study</small></div><span class="more">···</span></div>
+      <div class="sidebar-footer"><span class="avatar">CR</span><div><strong>Portfolio project</strong><small>Public benchmark analysis</small></div><span class="more">···</span></div>
     </aside>
     <main class="main-area">
       <header class="topbar">
-        <div class="breadcrumbs"><span>RISK ANALYTICS</span><b>/</b><strong id="breadcrumbCurrent">OVERVIEW</strong></div>
+        <div class="breadcrumbs"><span>PORTFOLIO STUDY</span><b>/</b><strong id="breadcrumbCurrent">OVERVIEW</strong></div>
         <div class="topbar-actions"><span class="snapshot-pill"><span class="live-dot"></span> STATIC DATA SNAPSHOT</span><button class="icon-button" id="downloadSnapshot" title="Download the full dashboard data as JSON" aria-label="Download all dashboard data">⇩</button></div>
       </header>
       <div class="page-content">
         <section class="page-view active" id="page-overview" aria-labelledby="overviewTitle">
           <div class="page-heading">
             <div>
-              <div class="eyebrow"><span class="eyebrow-line"></span> MODEL MONITORING · PORTFOLIO PROJECT</div>
-              <h1 id="overviewTitle">Card Risk Intelligence</h1>
+              <div class="eyebrow"><span class="eyebrow-line"></span> FRAUD & CREDIT RISK · PORTFOLIO STUDY</div>
+              <h1 id="overviewTitle">Fraud &amp; credit risk</h1>
               <p class="lead">A decision-focused view of transaction fraud and account default risk—measuring ranking quality alongside the review workload it creates.</p>
             </div>
             <div class="heading-badges"><span class="badge badge-blue">2 ANALYTICS TRACKS</span><span class="badge badge-neutral">NO CUSTOMER DATA</span></div>
@@ -68,7 +68,7 @@
               <div class="table-scroll"><table class="data-table" id="summaryTable"><thead><tr><th>Risk track</th><th>Evaluation sample</th><th class="numeric">Rows</th><th class="numeric">Events</th><th class="numeric">Review queue</th><th class="numeric">Precision</th><th class="numeric">Capture rate</th><th class="numeric">PR AUC</th></tr></thead><tbody></tbody></table></div>
               <div class="table-caption">Fraud capture rate = fraud recall. Credit capture rate = defaults captured. PR AUC is emphasized for imbalanced outcomes.</div>
             </article>
-            <aside class="insight-card"><div class="insight-eyebrow"><span>✦</span> ANALYST READOUT</div><h3>Review capacity is the decision variable.</h3><p id="analystReadout">Loading benchmark results…</p><div class="insight-rule"></div><div class="insight-metric"><span>Fraud queue precision</span><strong id="insightFraudPrecision">—</strong></div><div class="insight-metric"><span>Credit default capture</span><strong id="insightCreditCapture">—</strong></div><button class="insight-link" data-go="methodology">Review the assumptions <span>→</span></button></aside>
+            <aside class="insight-card"><div class="insight-eyebrow">HOLDOUT OBSERVATION</div><h3>Review capacity shapes the trade-off.</h3><p id="analystReadout">Loading benchmark results…</p><div class="insight-rule"></div><div class="insight-metric"><span>Fraud queue precision</span><strong id="insightFraudPrecision">—</strong></div><div class="insight-metric"><span>Credit default capture</span><strong id="insightCreditCapture">—</strong></div><button class="insight-link" data-go="methodology">Review the assumptions <span>→</span></button></aside>
           </div>
         </section>
 
@@ -122,10 +122,11 @@
           <p class="panel-subtitle" id="tableDescription">Search and sort the compact aggregate output. Select a column heading to change its sort order.</p>
           <div class="table-scroll explorer-table-scroll"><table class="data-table" id="explorerTable"><thead></thead><tbody></tbody></table></div><div class="table-caption" id="tableCount">Loading aggregate outputs…</div>
         </section>
-        <footer class="page-footer"><span>RISK / INTELLIGENCE <b>•</b> INDEPENDENT PORTFOLIO STUDY</span><span>Snapshot built from public benchmark aggregates · 2026-10-23</span></footer>
+        <footer class="page-footer"><span>CARD RISK STUDY <b>•</b> INDEPENDENT PORTFOLIO PROJECT</span><span>Public benchmark aggregates · snapshot 2026-10-23</span></footer>
       </div>
     </main>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
+
