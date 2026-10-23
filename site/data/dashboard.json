@@ -1,0 +1,463 @@
+{
+  "metadata": {
+    "project": "Card Risk Intelligence",
+    "snapshot_date": "2026-10-23",
+    "description": "Precomputed aggregates from an independent public-benchmark portfolio project.",
+    "privacy_note": "The website contains aggregate outputs only; no account-level or customer-identifying records are included."
+  },
+  "summary": [
+    {
+      "risk_domain": "Fraud",
+      "sample_name": "Later-time holdout",
+      "records": 85500,
+      "observed_events": 108,
+      "review_alerts": 313,
+      "true_positives": 89,
+      "false_positives": 224,
+      "false_negatives": 19,
+      "precision": 0.28434504792332266,
+      "recall": 0.8240740740740741,
+      "observed_event_rate": 0.0012631578947368421,
+      "review_rate": 0.0036608187134502925,
+      "pr_auc": 0.5317505796528981,
+      "roc_auc": 0.9788037976495325,
+      "decision_cutoff": 0.8,
+      "decision_policy": "0.80 selected from validation trade-offs before final holdout evaluation; score is not calibrated probability."
+    },
+    {
+      "risk_domain": "Credit Default",
+      "sample_name": "Seeded random test split",
+      "records": 4464,
+      "observed_events": 1004,
+      "review_alerts": 918,
+      "true_positives": 506,
+      "false_positives": 412,
+      "false_negatives": 498,
+      "precision": 0.55119825708061,
+      "recall": 0.5039840637450199,
+      "observed_event_rate": 0.224910394265233,
+      "review_rate": 0.2056451612903226,
+      "pr_auc": 0.5062247272379068,
+      "roc_auc": 0.7116366902332864,
+      "decision_cutoff": 0.2658092403639907,
+      "decision_policy": "Top 20% of validation risk scores routed to a hypothetical manual review queue; not an approval/decline rule."
+    }
+  ],
+  "thresholds": [
+    {
+      "risk_domain": "Fraud",
+      "threshold": 0.1,
+      "alerts": 23164,
+      "true_positives": 28,
+      "false_positives": 23136,
+      "false_negatives": 0,
+      "precision": 0.0012087722327749958,
+      "recall": 1.0
+    },
+    {
+      "risk_domain": "Fraud",
+      "threshold": 0.2,
+      "alerts": 9144,
+      "true_positives": 27,
+      "false_positives": 9117,
+      "false_negatives": 1,
+      "precision": 0.002952755905511811,
+      "recall": 0.9642857142857143
+    },
+    {
+      "risk_domain": "Fraud",
+      "threshold": 0.3,
+      "alerts": 4305,
+      "true_positives": 27,
+      "false_positives": 4278,
+      "false_negatives": 1,
+      "precision": 0.0062717770034843206,
+      "recall": 0.9642857142857143
+    },
+    {
+      "risk_domain": "Fraud",
+      "threshold": 0.4,
+      "alerts": 1828,
+      "true_positives": 26,
+      "false_positives": 1802,
+      "false_negatives": 2,
+      "precision": 0.014223194748358862,
+      "recall": 0.9285714285714286
+    },
+    {
+      "risk_domain": "Fraud",
+      "threshold": 0.5,
+      "alerts": 746,
+      "true_positives": 24,
+      "false_positives": 722,
+      "false_negatives": 4,
+      "precision": 0.032171581769437,
+      "recall": 0.8571428571428571
+    },
+    {
+      "risk_domain": "Fraud",
+      "threshold": 0.6,
+      "alerts": 370,
+      "true_positives": 23,
+      "false_positives": 347,
+      "false_negatives": 5,
+      "precision": 0.062162162162162166,
+      "recall": 0.8214285714285714
+    },
+    {
+      "risk_domain": "Fraud",
+      "threshold": 0.7,
+      "alerts": 216,
+      "true_positives": 23,
+      "false_positives": 193,
+      "false_negatives": 5,
+      "precision": 0.10648148148148148,
+      "recall": 0.8214285714285714
+    },
+    {
+      "risk_domain": "Fraud",
+      "threshold": 0.8,
+      "alerts": 105,
+      "true_positives": 21,
+      "false_positives": 84,
+      "false_negatives": 7,
+      "precision": 0.2,
+      "recall": 0.75
+    },
+    {
+      "risk_domain": "Fraud",
+      "threshold": 0.9,
+      "alerts": 56,
+      "true_positives": 19,
+      "false_positives": 37,
+      "false_negatives": 9,
+      "precision": 0.3392857142857143,
+      "recall": 0.6785714285714286
+    }
+  ],
+  "hourly": [
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 36,
+      "transaction_count": 612,
+      "fraud_count": 1,
+      "alert_count": "3",
+      "captured_fraud_count": 1,
+      "average_fraud_score": 0.15660725548763418,
+      "total_amount": 52680.43
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 37,
+      "transaction_count": 7780,
+      "fraud_count": 8,
+      "alert_count": "25",
+      "captured_fraud_count": 7,
+      "average_fraud_score": 0.1566901554569372,
+      "total_amount": 727806.44
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 38,
+      "transaction_count": 8541,
+      "fraud_count": 10,
+      "alert_count": "32",
+      "captured_fraud_count": 8,
+      "average_fraud_score": 0.16009106188056033,
+      "total_amount": 858934.52
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 39,
+      "transaction_count": 8625,
+      "fraud_count": 12,
+      "alert_count": "45",
+      "captured_fraud_count": 10,
+      "average_fraud_score": 0.1611720205473202,
+      "total_amount": 874365.85
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 40,
+      "transaction_count": 8667,
+      "fraud_count": 8,
+      "alert_count": "37",
+      "captured_fraud_count": 7,
+      "average_fraud_score": 0.16041520696288206,
+      "total_amount": 879880.44
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 41,
+      "transaction_count": 8284,
+      "fraud_count": 17,
+      "alert_count": "33",
+      "captured_fraud_count": 15,
+      "average_fraud_score": 0.16163400997715877,
+      "total_amount": 755412.26
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 42,
+      "transaction_count": 8432,
+      "fraud_count": 18,
+      "alert_count": "31",
+      "captured_fraud_count": 15,
+      "average_fraud_score": 0.15738772865658787,
+      "total_amount": 658259.7
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 43,
+      "transaction_count": 7655,
+      "fraud_count": 12,
+      "alert_count": "22",
+      "captured_fraud_count": 10,
+      "average_fraud_score": 0.15813225333598657,
+      "total_amount": 583486.79
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 44,
+      "transaction_count": 7776,
+      "fraud_count": 10,
+      "alert_count": "27",
+      "captured_fraud_count": 9,
+      "average_fraud_score": 0.15825819395966964,
+      "total_amount": 562167.07
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 45,
+      "transaction_count": 7808,
+      "fraud_count": 2,
+      "alert_count": "25",
+      "captured_fraud_count": 1,
+      "average_fraud_score": 0.1627271284957953,
+      "total_amount": 532729.54
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 46,
+      "transaction_count": 6464,
+      "fraud_count": 6,
+      "alert_count": "20",
+      "captured_fraud_count": 3,
+      "average_fraud_score": 0.16349122127459884,
+      "total_amount": 450802.81
+    },
+    {
+      "risk_domain": "Fraud",
+      "elapsed_dataset_hour": 47,
+      "transaction_count": 4856,
+      "fraud_count": 4,
+      "alert_count": "13",
+      "captured_fraud_count": 3,
+      "average_fraud_score": 0.16783787298595002,
+      "total_amount": 333578.87
+    }
+  ],
+  "deciles": [
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 1,
+      "account_count": 447,
+      "default_count": 313,
+      "observed_default_rate": 0.7002237136465325,
+      "average_risk_score": 0.5826476361037312,
+      "reviewed_account_count": 447
+    },
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 2,
+      "account_count": 447,
+      "default_count": 185,
+      "observed_default_rate": 0.41387024608501116,
+      "average_risk_score": 0.3661384274146228,
+      "reviewed_account_count": 447
+    },
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 3,
+      "account_count": 447,
+      "default_count": 83,
+      "observed_default_rate": 0.18568232662192394,
+      "average_risk_score": 0.24933645008588148,
+      "reviewed_account_count": 24
+    },
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 4,
+      "account_count": 447,
+      "default_count": 67,
+      "observed_default_rate": 0.14988814317673377,
+      "average_risk_score": 0.2299417826162457,
+      "reviewed_account_count": 0
+    },
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 5,
+      "account_count": 446,
+      "default_count": 46,
+      "observed_default_rate": 0.1031390134529148,
+      "average_risk_score": 0.2121833647313861,
+      "reviewed_account_count": 0
+    },
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 6,
+      "account_count": 446,
+      "default_count": 51,
+      "observed_default_rate": 0.11434977578475336,
+      "average_risk_score": 0.189867486850261,
+      "reviewed_account_count": 0
+    },
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 7,
+      "account_count": 446,
+      "default_count": 73,
+      "observed_default_rate": 0.16367713004484305,
+      "average_risk_score": 0.1555401103087859,
+      "reviewed_account_count": 0
+    },
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 8,
+      "account_count": 446,
+      "default_count": 78,
+      "observed_default_rate": 0.17488789237668162,
+      "average_risk_score": 0.12204515304119104,
+      "reviewed_account_count": 0
+    },
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 9,
+      "account_count": 446,
+      "default_count": 51,
+      "observed_default_rate": 0.11434977578475336,
+      "average_risk_score": 0.09343106640291618,
+      "reviewed_account_count": 0
+    },
+    {
+      "risk_domain": "Credit Default",
+      "risk_decile": 10,
+      "account_count": 446,
+      "default_count": 57,
+      "observed_default_rate": 0.12780269058295965,
+      "average_risk_score": 0.048679606254496896,
+      "reviewed_account_count": 0
+    }
+  ],
+  "paymentStatus": [
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": -2,
+      "account_count": 405,
+      "default_count": 60,
+      "observed_default_rate": 0.14814814814814814,
+      "average_risk_score": 0.05239875060889878,
+      "reviewed_account_count": 0
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": -1,
+      "account_count": 860,
+      "default_count": 151,
+      "observed_default_rate": 0.1755813953488372,
+      "average_risk_score": 0.11643276121103655,
+      "reviewed_account_count": 0
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": 0,
+      "account_count": 2176,
+      "default_count": 274,
+      "observed_default_rate": 0.12591911764705882,
+      "average_risk_score": 0.1988685101192132,
+      "reviewed_account_count": 77
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": 1,
+      "account_count": 534,
+      "default_count": 176,
+      "observed_default_rate": 0.3295880149812734,
+      "average_risk_score": 0.3343012862218418,
+      "reviewed_account_count": 356
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": 2,
+      "account_count": 396,
+      "default_count": 273,
+      "observed_default_rate": 0.6893939393939394,
+      "average_risk_score": 0.5112709192993999,
+      "reviewed_account_count": 392
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": 3,
+      "account_count": 72,
+      "default_count": 59,
+      "observed_default_rate": 0.8194444444444444,
+      "average_risk_score": 0.7115947366860103,
+      "reviewed_account_count": 72
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": 4,
+      "account_count": 11,
+      "default_count": 7,
+      "observed_default_rate": 0.6363636363636364,
+      "average_risk_score": 0.8327075551579756,
+      "reviewed_account_count": 11
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": 5,
+      "account_count": 5,
+      "default_count": 1,
+      "observed_default_rate": 0.2,
+      "average_risk_score": 0.9058608482079771,
+      "reviewed_account_count": 5
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": 6,
+      "account_count": 2,
+      "default_count": 1,
+      "observed_default_rate": 0.5,
+      "average_risk_score": 0.9469146747137662,
+      "reviewed_account_count": 2
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": 7,
+      "account_count": 1,
+      "default_count": 1,
+      "observed_default_rate": 1.0,
+      "average_risk_score": 0.9797726768837698,
+      "reviewed_account_count": 1
+    },
+    {
+      "risk_domain": "Credit Default",
+      "latest_payment_status_code": 8,
+      "account_count": 2,
+      "default_count": 1,
+      "observed_default_rate": 0.5,
+      "average_risk_score": 0.98728985862789,
+      "reviewed_account_count": 2
+    }
+  ],
+  "domain": [
+    {
+      "risk_domain": "Fraud",
+      "dataset_context": "Public ULB/Kaggle benchmark; anonymized features; time-based holdout; not Amex data."
+    },
+    {
+      "risk_domain": "Credit Default",
+      "dataset_context": "Historical UCI Taiwan bank benchmark; seeded random split; not U.S. lending data."
+    }
+  ]
+}

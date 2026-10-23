@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1626">
+  <meta name="description" content="Interactive portfolio dashboard exploring fraud triage and credit-default review analytics with PySpark.">
+  <title>Card Risk Intelligence | Portfolio Analytics</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#overview" aria-label="Card Risk Intelligence overview">
+        <span class="brand-mark">CR</span>
+        <span class="brand-copy"><strong>RISK / INTELLIGENCE</strong><small>PORTFOLIO LAB</small></span>
+      </a>
+      <div class="side-caption">WORKSPACE</div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-page="overview" aria-current="page"><span class="nav-icon">◫</span><span>Executive overview</span><span class="nav-arrow">›</span></button>
+        <button class="nav-item" data-page="fraud"><span class="nav-icon">⌁</span><span>Fraud operations</span><span class="nav-arrow">›</span></button>
+        <button class="nav-item" data-page="credit"><span class="nav-icon">◈</span><span>Credit portfolio</span><span class="nav-arrow">›</span></button>
+        <button class="nav-item" data-page="methodology"><span class="nav-icon">◎</span><span>Methodology & limits</span><span class="nav-arrow">›</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="snapshot-card"><span class="live-dot"></span><div><strong>LOCAL SNAPSHOT</strong><small>Benchmark data · offline</small></div></div>
+      <div class="sidebar-footer"><span class="avatar">RA</span><div><strong>Risk analytics</strong><small>Independent portfolio study</small></div><span class="more">···</span></div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>RISK ANALYTICS</span><b>/</b><strong id="breadcrumbCurrent">OVERVIEW</strong></div>
+        <div class="topbar-actions"><span class="snapshot-pill"><span class="live-dot"></span> STATIC DATA SNAPSHOT</span><button class="icon-button" id="downloadSnapshot" title="Download the full dashboard data as JSON" aria-label="Download all dashboard data">⇩</button></div>
+      </header>
+      <div class="page-content">
+        <section class="page-view active" id="page-overview" aria-labelledby="overviewTitle">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> MODEL MONITORING · PORTFOLIO PROJECT</div>
+              <h1 id="overviewTitle">Card Risk Intelligence</h1>
+              <p class="lead">A decision-focused view of transaction fraud and account default risk—measuring ranking quality alongside the review workload it creates.</p>
+            </div>
+            <div class="heading-badges"><span class="badge badge-blue">2 ANALYTICS TRACKS</span><span class="badge badge-neutral">NO CUSTOMER DATA</span></div>
+          </div>
+          <div class="callout callout-slim"><span class="callout-icon">i</span><p><strong>Portfolio benchmark, not an Amex system.</strong> Results use public ULB/Kaggle and UCI samples. Review flags illustrate analyst workload; they are not customer decisions or production performance.</p><button class="text-link" data-go="methodology">Read the methodology <span>→</span></button></div>
+          <div class="section-header"><div><h2>Performance at a glance</h2><p>Out-of-sample results from two independent model tracks</p></div><span class="as-of">SNAPSHOT · 23 OCT 2026</span></div>
+          <div class="kpi-grid" id="overviewKpis"></div>
+          <div class="section-header section-header-spaced"><div><h2>Decision signals</h2><p>Different operating questions require different views of risk</p></div><span class="small-note">Select a chart point or bar to inspect a segment</span></div>
+          <div class="dashboard-grid two-col">
+            <article class="panel chart-panel">
+              <div class="panel-heading"><div><div class="panel-kicker">FRAUD · VALIDATION</div><h3>Review policy trade-off</h3></div><button class="panel-action" data-go="fraud">Open fraud view <span>↗</span></button></div>
+              <p class="panel-subtitle">Precision and recall move in opposite directions as the alert cutoff changes.</p>
+              <div class="chart-legend"><span><i class="legend-dot blue"></i>Recall</span><span><i class="legend-dot coral"></i>Precision</span></div>
+              <div class="chart-wrap"><svg id="overviewThresholdChart" viewBox="0 0 720 230" role="img" aria-label="Validation precision and recall by fraud score threshold"></svg></div>
+              <div class="chart-foot"><span>Validation cutoffs · 0.10–0.90</span><strong>Selected cutoff 0.80</strong></div>
+            </article>
+            <article class="panel chart-panel">
+              <div class="panel-heading"><div><div class="panel-kicker">CREDIT · TEST</div><h3>Default rate by risk decile</h3></div><button class="panel-action" data-go="credit">Open credit view <span>↗</span></button></div>
+              <p class="panel-subtitle">Accounts are ordered by model score; decile 1 is the highest-risk group.</p>
+              <div class="chart-legend"><span><i class="legend-dot teal"></i>Observed default rate</span><span><i class="legend-dot blue"></i>Average score · right axis</span></div>
+              <div class="chart-wrap"><svg id="overviewDecileChart" viewBox="0 0 720 230" role="img" aria-label="Observed credit default rate across model risk deciles"></svg></div>
+              <div class="chart-foot"><span>Test sample · 4,464 accounts</span><strong id="overviewTopDecile">Highest risk group</strong></div>
+            </article>
+          </div>
+          <div class="dashboard-grid overview-lower">
+            <article class="panel table-panel">
+              <div class="panel-heading"><div><div class="panel-kicker">HOLDOUT READOUT</div><h3>Model comparison</h3></div><button class="download-button" id="downloadSummary">⇩ Export summary</button></div>
+              <div class="table-scroll"><table class="data-table" id="summaryTable"><thead><tr><th>Risk track</th><th>Evaluation sample</th><th class="numeric">Rows</th><th class="numeric">Events</th><th class="numeric">Review queue</th><th class="numeric">Precision</th><th class="numeric">Capture rate</th><th class="numeric">PR AUC</th></tr></thead><tbody></tbody></table></div>
+              <div class="table-caption">Fraud capture rate = fraud recall. Credit capture rate = defaults captured. PR AUC is emphasized for imbalanced outcomes.</div>
+            </article>
+            <aside class="insight-card"><div class="insight-eyebrow"><span>✦</span> ANALYST READOUT</div><h3>Review capacity is the decision variable.</h3><p id="analystReadout">Loading benchmark results…</p><div class="insight-rule"></div><div class="insight-metric"><span>Fraud queue precision</span><strong id="insightFraudPrecision">—</strong></div><div class="insight-metric"><span>Credit default capture</span><strong id="insightCreditCapture">—</strong></div><button class="insight-link" data-go="methodology">Review the assumptions <span>→</span></button></aside>
+          </div>
+        </section>
+
+        <section class="page-view" id="page-fraud" aria-labelledby="fraudTitle" hidden>
+          <div class="page-heading compact-heading"><div><div class="eyebrow"><span class="eyebrow-line coral-line"></span> TRANSACTION RISK · ULB BENCHMARK</div><h1 id="fraudTitle">Fraud operations</h1><p class="lead">Explore how the investigation queue changes as the transaction score cutoff moves. The selected 0.80 policy was chosen on validation data before the holdout was scored.</p></div><span class="badge badge-coral">TIME-ORDERED HOLDOUT</span></div>
+          <div class="kpi-grid" id="fraudKpis"></div>
+          <div class="dashboard-grid fraud-policy-grid">
+            <article class="panel chart-panel policy-panel">
+              <div class="panel-heading"><div><div class="panel-kicker">VALIDATION POLICY EXPLORER</div><h3>How aggressive should the review queue be?</h3></div><span class="mini-chip">VALIDATION ONLY</span></div>
+              <p class="panel-subtitle">Move the slider or select a point. This curve is a policy trade-off on the validation sample, not the holdout.</p>
+              <div class="threshold-control"><label for="thresholdRange">Score cutoff <strong id="thresholdValue">0.80</strong></label><input id="thresholdRange" type="range" min="10" max="90" step="10" value="80" aria-label="Fraud score threshold"><div class="range-ticks"><span>0.10 · broad queue</span><span>0.90 · narrow queue</span></div></div>
+              <div class="threshold-stats" id="thresholdStats"></div>
+              <div class="chart-legend"><span><i class="legend-dot blue"></i>Recall</span><span><i class="legend-dot coral"></i>Precision</span></div>
+              <div class="chart-wrap chart-wrap-large"><svg id="fraudThresholdChart" viewBox="0 0 900 260" role="img" aria-label="Interactive validation precision and recall by score cutoff"></svg></div>
+              <div class="chart-foot"><span>Cutoff selected from validation results</span><strong>Holdout applied once at 0.80</strong></div>
+            </article>
+            <aside class="panel holdout-panel"><div class="panel-kicker">FINAL HOLDOUT · CUTOFF 0.80</div><h3>Review queue outcome</h3><p class="panel-subtitle">Latest 30% of transactions, held out from model fitting and threshold choice.</p><div class="holdout-result-grid" id="fraudHoldoutStats"></div><div class="confusion-title">HOLDOUT LABEL OUTCOMES</div><div class="confusion-matrix" id="fraudConfusion"></div><div class="callout callout-warning"><span class="callout-icon">!</span><p>At this cutoff, <strong>224 non-fraud transactions</strong> are routed to review. A real operation would need agreed review capacity, costs, latency targets, and confirmed fraud labels.</p></div></aside>
+          </div>
+          <article class="panel chart-panel time-panel"><div class="panel-heading"><div><div class="panel-kicker">HOLDOUT · ACTIVITY PROFILE</div><h3>Transaction activity by elapsed dataset hour</h3></div><span class="mini-chip mini-chip-muted">NOT CALENDAR TIME</span></div><p class="panel-subtitle">This anonymized benchmark exposes elapsed time only. Select a bucket to see its transaction and fraud counts.</p><div class="chart-legend"><span><i class="legend-square"></i>Transactions · left axis</span><span><i class="legend-dot coral"></i>Fraud labels · right axis</span></div><div class="chart-wrap chart-wrap-large"><svg id="fraudHourlyChart" viewBox="0 0 1000 270" role="img" aria-label="Transactions and observed fraud labels by elapsed dataset hour"></svg></div><div id="hourDetail" class="segment-detail">Select an hourly bucket to inspect the holdout activity.</div></article>
+          <div class="data-quality-strip"><strong>Interpretation guardrail</strong><span>The score is a ranking signal, not a calibrated probability. The fraud sample is severely imbalanced; precision changes with the review cutoff and sample prevalence.</span></div>
+        </section>
+
+        <section class="page-view" id="page-credit" aria-labelledby="creditTitle" hidden>
+          <div class="page-heading compact-heading"><div><div class="eyebrow"><span class="eyebrow-line teal-line"></span> ACCOUNT RISK · UCI TAIWAN BENCHMARK</div><h1 id="creditTitle">Credit portfolio</h1><p class="lead">Understand score ordering, observed default rates, and the size of a hypothetical manual-review queue on a historical account sample.</p></div><span class="badge badge-teal">SEEDED RANDOM TEST SPLIT</span></div>
+          <div class="kpi-grid" id="creditKpis"></div>
+          <div class="dashboard-grid credit-top-grid">
+            <article class="panel chart-panel"><div class="panel-heading"><div><div class="panel-kicker">TEST · SCORE RANKING</div><h3>Observed defaults across risk deciles</h3></div><span class="mini-chip mini-chip-teal">SELECT A DECILE</span></div><p class="panel-subtitle">Deciles are ranked from highest to lowest predicted score. Bars show observed default rate, not probability calibration.</p><div class="chart-legend"><span><i class="legend-dot teal"></i>Observed default rate</span><span><i class="legend-dot blue"></i>Average score · right axis</span></div><div class="chart-wrap chart-wrap-large"><svg id="creditDecileChart" viewBox="0 0 900 260" role="img" aria-label="Observed default rate and average model score by credit risk decile"></svg></div><div id="decileDetail" class="segment-detail">Select a decile to see its test sample size, default count, and review coverage.</div></article>
+            <aside class="panel portfolio-panel"><div class="panel-heading"><div><div class="panel-kicker">REVIEW CAPACITY SCENARIO</div><h3>Top 20% of validation scores</h3></div></div><p class="panel-subtitle">The validation 80th-percentile score sets a hypothetical queue capacity; this is not a credit approval/decline rule.</p><div class="capacity-ring" id="capacityRing"><div><strong id="creditQueueRate">20.6%</strong><span>test accounts<br>in review</span></div></div><div class="capacity-kpis" id="creditQueueStats"></div><div class="capacity-note"><span class="note-square"></span><span>Highest-score groups dominate the queue. Lower-score groups may still contain defaults.</span></div></aside>
+          </div>
+          <article class="panel payment-panel"><div class="panel-heading"><div><div class="panel-kicker">TEST · SEGMENT EXPLORER</div><h3>Default rate by latest repayment status</h3></div><label class="compact-select-label">Status<select id="paymentStatusSelect" aria-label="Select a latest repayment status"><option value="all">All statuses</option></select></label></div><p class="panel-subtitle">PAY_0 is the most recent repayment-status code in the source benchmark. Sparse categories have unstable rates.</p><div class="payment-layout"><div id="paymentBars" class="payment-bars" role="list" aria-label="Account counts and observed default rate by latest payment status"></div><aside class="payment-detail" id="paymentDetail"></aside></div><div class="table-caption">Categories with fewer than 30 accounts are highlighted as small samples; do not over-interpret their observed rate.</div></article>
+          <div class="data-quality-strip teal-strip"><strong>Interpretation guardrail</strong><span>Sex, education, marital status, and age were excluded from model features. Their omission alone does not establish fairness; broader validation and legal review would be required before real use.</span></div>
+        </section>
+
+        <section class="page-view" id="page-methodology" aria-labelledby="methodTitle" hidden>
+          <div class="page-heading compact-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> DATA, DESIGN & GOVERNANCE</div><h1 id="methodTitle">Methodology & limits</h1><p class="lead">The dashboard keeps the fraud and credit analyses separate, makes the evaluation split explicit, and states what the benchmark results do—and do not—support.</p></div><span class="badge badge-neutral">REPRODUCIBLE SNAPSHOT</span></div>
+          <div class="method-callout"><span class="callout-icon">i</span><div><strong>Independent portfolio study</strong><p>This work was created for analyst practice using public benchmark data. It is not affiliated with, endorsed by, or based on American Express data, customer behavior, or internal policy.</p></div></div>
+          <div class="method-grid">
+            <article class="panel method-card"><div class="method-number">01</div><div class="panel-kicker">TRANSACTION FRAUD</div><h3>Chronological evaluation</h3><p>ULB/Kaggle Credit Card Fraud Detection sample. The earliest 56% is used for fit, the next 14% for threshold review, and the latest 30% for one final holdout evaluation.</p><dl><div><dt>Model</dt><dd>Class-weighted logistic regression</dd></div><div><dt>Features</dt><dd>Elapsed time, amount, anonymized V1–V28</dd></div><div><dt>Operating point</dt><dd>0.80 score cutoff selected on validation</dd></div><div><dt>Holdout</dt><dd>85,500 transactions · 108 fraud labels</dd></div></dl></article>
+            <article class="panel method-card"><div class="method-number">02</div><div class="panel-kicker">CREDIT DEFAULT</div><h3>Seeded account split</h3><p>UCI Default of Credit Card Clients historical Taiwan sample. A seeded 70% / 15% / 15% train, validation, and test split is used because this source has no event date for a temporal test.</p><dl><div><dt>Model</dt><dd>Standardized, unweighted logistic regression</dd></div><div><dt>Features</dt><dd>Credit limit, repayment history, balances, payment amounts</dd></div><div><dt>Review queue</dt><dd>Top 20% of validation scores; cutoff evaluated on test</dd></div><div><dt>Excluded</dt><dd>Sex, education, marital status, and age</dd></div></dl></article>
+          </div>
+          <div class="dashboard-grid two-col method-lower">
+            <article class="panel"><div class="panel-kicker">HOW TO READ THE METRICS</div><h3>Ranking quality and workload</h3><div class="definition-list"><div><strong>PR AUC</strong><p>Precision-recall area summarizes ranking behavior with an emphasis on the positive class. It is not a business impact estimate.</p></div><div><strong>Precision</strong><p>Among accounts or transactions sent to review, the share carrying the positive benchmark label.</p></div><div><strong>Recall / capture</strong><p>Among positive benchmark labels, the share routed to review at the chosen threshold.</p></div><div><strong>Review rate</strong><p>Share of the evaluated sample flagged for manual review. Capacity and label quality matter.</p></div></div></article>
+            <article class="panel source-panel"><div class="panel-kicker">DATA PROVENANCE</div><h3>Public benchmark sources</h3><div class="source-item"><span class="source-mark">ULB</span><div><strong>Credit Card Fraud Detection</strong><p>An anonymized European card transaction sample from a short 2013 period, distributed through Kaggle.</p><a href="https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud" target="_blank" rel="noreferrer">View Kaggle source ↗</a></div></div><div class="source-item"><span class="source-mark teal-mark">UCI</span><div><strong>Default of Credit Card Clients</strong><p>Historical Taiwan account benchmark; source dataset is licensed CC BY 4.0.</p><a href="https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients" target="_blank" rel="noreferrer">View UCI source ↗</a></div></div></article>
+          </div>
+          <article class="limitations-panel"><div><div class="panel-kicker">BEFORE ANY REAL-WORLD USE</div><h3>What this project cannot establish</h3></div><ul><li>Neither benchmark contains American Express data or reflects current Amex performance.</li><li>The fraud data lack customer, merchant, device, network, and operational context; their positive rate is not a live portfolio prevalence.</li><li>The credit sample is a historical Taiwan snapshot with a random test split, not a test of present-day or temporal generalization.</li><li>Model scores are not calibrated probabilities. Observed rates by segment are benchmark outcomes, not forecasts for a current population.</li><li>Review flags are analytical examples only. They do not recommend, automate, or authorize payment blocking, account approval, or credit decisions.</li></ul></article>
+          <div class="method-footer">Built with PySpark and a static, dependency-free web dashboard. The current website uses precomputed aggregates only; no account-level rows are embedded.</div>
+        </section>
+
+        <section class="panel explorer-panel" aria-labelledby="explorerTitle">
+          <div class="panel-heading"><div><div class="panel-kicker">ANALYST WORKBENCH</div><h3 id="explorerTitle">Explore the aggregate outputs</h3></div><div class="table-tools"><label class="sr-only" for="tableDataset">Choose dataset</label><select id="tableDataset" aria-label="Choose aggregate output"><option value="summary">Model summary</option><option value="thresholds">Fraud validation cutoffs</option><option value="deciles">Credit risk deciles</option><option value="paymentStatus">Latest payment status</option><option value="hourly">Fraud elapsed-hour buckets</option></select><label class="search-box"><span>⌕</span><input id="tableSearch" type="search" placeholder="Filter rows" aria-label="Filter table rows"></label><button class="download-button" id="downloadTable">⇩ Export view</button></div></div>
+          <p class="panel-subtitle" id="tableDescription">Search and sort the compact aggregate output. Select a column heading to change its sort order.</p>
+          <div class="table-scroll explorer-table-scroll"><table class="data-table" id="explorerTable"><thead></thead><tbody></tbody></table></div><div class="table-caption" id="tableCount">Loading aggregate outputs…</div>
+        </section>
+        <footer class="page-footer"><span>RISK / INTELLIGENCE <b>•</b> INDEPENDENT PORTFOLIO STUDY</span><span>Snapshot built from public benchmark aggregates · 2026-10-23</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

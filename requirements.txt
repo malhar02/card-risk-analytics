@@ -1,0 +1,5 @@
+# Azure Databricks provides its own Spark runtime. These packages are for local development.
+pyspark==4.2.0
+pandas>=2.2,<3
+ucimlrepo>=0.0.7,<1
+matplotlib>=3.8,<4

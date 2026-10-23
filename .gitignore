@@ -1,0 +1,36 @@
+# Source data and generated outputs
+data/raw/
+data/processed/*
+!data/processed/fraud_model_metrics.json
+!data/processed/credit_default_metrics.json
+data/processed/mpl-cache/
+*.csv
+!reports/powerbi_dashboard_kit/risk_dashboard_domain.csv
+!reports/powerbi_dashboard_kit/risk_dashboard_summary.csv
+!reports/powerbi_dashboard_kit/fraud_dashboard_thresholds.csv
+!reports/powerbi_dashboard_kit/fraud_dashboard_hourly.csv
+!reports/powerbi_dashboard_kit/credit_dashboard_deciles.csv
+!reports/powerbi_dashboard_kit/credit_dashboard_payment_status.csv
+*.parquet
+*.delta
+*.db
+
+# Local Python environments and caches
+.venv/
+venv/
+tools/jdk-17/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Credentials and local configuration
+.env
+.databrickscfg
+*.pem
+*.key
+
+# Editor / OS files
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

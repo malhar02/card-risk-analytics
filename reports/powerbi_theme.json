@@ -1,0 +1,14 @@
+{
+  "name": "Card Risk Analytics",
+  "dataColors": [
+    "#2D8CFF",
+    "#14B8A6",
+    "#F4A340",
+    "#D95D6F",
+    "#6F68D8",
+    "#4B6178"
+  ],
+  "background": "#F4F7FB",
+  "foreground": "#14263D",
+  "tableAccent": "#2D8CFF"
+}

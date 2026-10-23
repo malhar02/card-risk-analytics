@@ -1,0 +1,3 @@
+risk_domain,dataset_context
+Fraud,Public ULB/Kaggle benchmark; anonymized features; time-based holdout; not Amex data.
+Credit Default,Historical UCI Taiwan bank benchmark; seeded random split; not U.S. lending data.
